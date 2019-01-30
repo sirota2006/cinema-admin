@@ -1,0 +1,64 @@
+<div [ngStyle]="modalService.modalState ? {} : {display: 'none'}" class="modal-container">
+  <div class="modal-background">
+  </div>
+  <div *ngIf="modalService.deleteMode" class="delete-modal-container">
+    <div class="custom-modal">
+      <div class="delete-modal">
+        <div class="custom-modal-header">
+          <h4>Are You Sure ?</h4>
+        </div>
+        <div class="custom-modal-actions">
+          <button class="btn-flat submit" type="submit" (click)="deleteMovie()">submit</button>
+          <button class="btn cancel red" (click)="onClose(delete)">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="modalService.formMode" class="form-main-container">
+    <div class="custom-modal">
+      <form [formGroup]="movieForm" class="form-container">
+        <div class="form-group">
+          <validation-message [control]="movieForm.controls.title"></validation-message>
+          <input formControlName="title" type="text" name="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+          <validation-message [control]="movieForm.controls.director"></validation-message>
+          <input formControlName="director" type="text" name="director" placeholder="director">
+        </div>
+        <div class="form-group">
+          <validation-message [control]="movieForm.controls.poster"></validation-message>
+          <input formControlName="poster" type="text" name="poster" placeholder="Poster-URL">
+        </div>
+        <div class="sub-details">
+          <div class="form-group">
+            <validation-message [control]="movieForm.controls.year"></validation-message>
+            <input formControlName="year" type="text" name="year" placeholder="Year">
+          </div>
+          <div class="form-group">
+            <validation-message [control]="movieForm.controls.rating"></validation-message>
+            <input formControlName="rating" type="text" name="rating" placeholder="rating">
+          </div>
+          <div class="form-group">
+            <validation-message [control]="movieForm.controls.runtime"></validation-message>
+            <input formControlName="runtime" type="text" name="runtime" placeholder="runtime(min)">
+          </div>
+        </div>
+        <div class="genre-container">
+          <span>Genre:</span>
+          <div class="genre">
+            <p *ngFor="let genreControl of movieForm.controls.genres.controls; let i = index">
+              <label formArrayName="genres">
+                <input [formControlName]="i" class="red" type="checkbox" />
+                <span>{{genres[i]}}</span>
+              </label>
+            </p>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-flat submit" type="submit" (click)="onSubmit()">submit</button>
+          <button class="btn cancel red" (click)="onClose(form)">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

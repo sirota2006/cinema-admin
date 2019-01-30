@@ -1,0 +1,14 @@
+<div class="main wrapper container">
+  <app-header></app-header>
+  <div class="movie-details-container">
+    <app-movie-details></app-movie-details>
+  </div>
+  <div class="movie-items">
+    <div class="movie-items-container ">
+      <div class="movie-item" *ngFor="let movie of (movies$ | async)">
+        <app-movie-item [movie]="movie"></app-movie-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-movie-form></app-movie-form>

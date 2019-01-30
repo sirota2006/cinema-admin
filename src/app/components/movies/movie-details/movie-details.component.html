@@ -1,0 +1,30 @@
+<div class="movie-details" *ngIf="movie">
+  <div class="details-container">
+    <div class="details">
+      <div class="header">
+        <span>{{movie.title}}</span>
+      </div>
+      <div class="genre" [innerHTML]="movie.genre | genre"></div>
+      <div class="sub-details">
+        <div class="rating" [innerHTML]="movie.rating | rating">
+        </div>
+        <div class="year">
+          <span> <span class="bold">Year:</span> {{movie.year | year}}</span>
+        </div>
+        <div class="runtime">
+          <span> <span class="bold">Duration:</span> {{movie.runtime}}</span>
+        </div>
+      </div>
+      <div class="description">
+        <p>{{movie.plot}}</p>
+      </div>
+      <div class="details-actions">
+        <button class="btn-flat edit " (click)="onEdit()">Edit</button>
+        <button class="btn-flat red delete " (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="movie-trailer-container">
+    <movie-trailer [title]="movie.title"></movie-trailer>
+  </div>
+</div>
