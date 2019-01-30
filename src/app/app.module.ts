@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgRedux, NgReduxModule } from "@angular-redux/store";
 import { IAppState } from "./store";
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import { store } from "./store";
@@ -44,7 +43,6 @@ import { ScrollTopDirective } from './directives/scroll-top.directive';
   imports: [
     ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule,
     NgReduxModule
   ],
   providers: [MoviesService, YoutubeService, ValidationService, MovieAction],

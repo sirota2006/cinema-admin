@@ -7,7 +7,7 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private searchMode: boolean = false;
+  searchMode: boolean = false;
 
   constructor(private modalService: ModalService) { }
 

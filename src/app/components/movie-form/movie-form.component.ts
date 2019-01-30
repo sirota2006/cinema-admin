@@ -22,7 +22,7 @@ export class MovieFormComponent implements OnInit {
   private genreControls: Array<FormControl>;
   private movie: IMovie = new Movie("", "", new Date().getFullYear(), "", [], "", "", "", 0);;
 
-  constructor(private fb: FormBuilder, private modalService: ModalService, private moviesService: MoviesService) {
+  constructor(private fb: FormBuilder, public modalService: ModalService, private moviesService: MoviesService) {
   }
 
   ngOnInit() {

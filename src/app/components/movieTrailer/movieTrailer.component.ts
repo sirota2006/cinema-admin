@@ -11,7 +11,7 @@ import IMovie from 'src/app/interfaces/IMovie';
 })
 export class MovieTrailer implements OnInit {
   @select('selectedMovie') selectedMovie$: Observable<IMovie>;
-  private videoId: string;
+  public videoId: string;
 
   constructor(private youtubeService: YoutubeService) {
   }

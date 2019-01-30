@@ -12,7 +12,7 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class MovieDetailsComponent implements OnInit {
   @select('selectedMovie') movie$: Subject<IMovie>;
-  private movie: IMovie;
+  public movie: IMovie;
   private deleteModal: boolean = false;
 
   constructor(private moviesService: MoviesService, private modalService: ModalService) { }
