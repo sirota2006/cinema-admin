@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from "@angular-redux/store";
-import { ADD_MOVIE, DELETE_MOVIE, SET_MOVIES, RESET_SELECTED_MOVIE } from "../actions";
 import ombapi from "../apis/ombapi";
 import { IAppState } from '../store';
 import IMovie from '../interfaces/IMovie';
@@ -60,5 +59,9 @@ export class MoviesService {
     this.ngRedux.dispatch(this.movieAction.removeMovieAction(selectedMovie.id));
     this.ngRedux.dispatch(this.movieAction.selectMovieAction(movies[index + 1]));
 
+  }
+
+  selectMovie(movie: IMovie) {
+    this.ngRedux.dispatch(this.movieAction.selectMovieAction(movie));
   }
 }

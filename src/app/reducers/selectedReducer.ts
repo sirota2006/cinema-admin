@@ -1,5 +1,7 @@
-import { SELECT_MOVE, RESET_SELECTED_MOVIE } from "../actions/index";
 import IMovie from '../interfaces/IMovie';
+import { MovieAction } from "../actions/movies.action";
+
+const { SELECT_MOVE } = MovieAction;
 
 export default function selectedReducer(state: IMovie = null, action) {
   switch (action.type) {
