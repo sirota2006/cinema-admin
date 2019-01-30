@@ -18,14 +18,14 @@ export class MoviesService {
     const movies: Array<IMovie> = await Promise.all(requests);
 
     this.ngRedux.dispatch(this.movieAction.setMoviesAction(movies));
-    this.ngRedux.dispatch(this.movieAction.selectMovieAction(movies[0]));
+    this.selectMovie(movies[0]);
   };
 
-  async fetchMovie(title: string) {
+  async fetchMovie(title: string): Promise<IMovie> {
     try {
       const { data } = await ombapi.get(title);
-      const genre = data.Genre.split(",").map(gen => gen.replace(/[^a-zA-Z0-9]/g, ""));
-      const paresdTitle = data.Title.replace(/[^a-zA-Z0-9]/g, " ");
+      const genre: Array<string> = data.Genre.split(",").map(gen => gen.replace(/[^a-zA-Z0-9]/g, ""));
+      const paresdTitle: string = data.Title.replace(/[^a-zA-Z0-9]/g, " ");
       const movie: IMovie = new Movie(
         data.imdbID,
         paresdTitle,
@@ -50,15 +50,22 @@ export class MoviesService {
 
   editMovie(movie: IMovie) {
     this.ngRedux.dispatch(this.movieAction.editMovieAction(movie));
-    this.ngRedux.dispatch(this.movieAction.selectMovieAction(movie));
+    this.selectMovie(movie);
   }
 
   deleteMovie() {
     const { selectedMovie, movies } = this.ngRedux.getState();
+    // find movie to delete index in movie array 
     const index = movies.findIndex(movie => movie.id === selectedMovie.id);
     this.ngRedux.dispatch(this.movieAction.removeMovieAction(selectedMovie.id));
-    this.ngRedux.dispatch(this.movieAction.selectMovieAction(movies[index + 1]));
-
+    // check if next or prev movie exist if not select null
+    if (movies[index + 1]) {
+      this.selectMovie(movies[index + 1])
+    } else if (movies[index - 1]) {
+      this.selectMovie(movies[index - 1])
+    } else {
+      this.selectMovie(null)
+    }
   }
 
   selectMovie(movie: IMovie) {
