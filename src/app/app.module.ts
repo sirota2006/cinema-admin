@@ -22,6 +22,7 @@ import { ValidationMessageComponent } from './components/validation-message/vali
 import { ValidationService } from './services/validation.service';
 import { TitlePipe } from './pipes/title.pipe';
 import { MovieAction } from "./actions/movies.action";
+import { ScrollTopDirective } from './directives/scroll-top.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MovieAction } from "./actions/movies.action";
     YearPipe,
     MovieFormComponent,
     ValidationMessageComponent,
-    TitlePipe
+    TitlePipe,
+    ScrollTopDirective
   ],
   imports: [
     ReactiveFormsModule,
